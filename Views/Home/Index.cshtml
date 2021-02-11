@@ -1,0 +1,90 @@
+﻿@using police_alert.Domain;
+@{
+    ViewData["Title"] = "Home Page";
+    var username = User.Identity.Name;
+}
+@model List<Report>
+<style>
+
+</style>
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+
+        <div class="col-4"><input type="text" id="userInput" value=@username hidden></div>
+
+    </div>
+    
+    @*<div class="row">
+            <div class="col-6">
+                <input type="button" id="sendButton" value="Send Message" />
+            </div>
+        </div>*@
+</div>
+
+
+<div class="row d-flex justify-content-between p-2">
+    <div class="align-content-center">
+        <h1 class="card-title-custom">Police alert</h1>
+        <p>Report police to other drivers.</p>
+    </div>
+    <div class="card message-hub">
+        <a asp-action="DeleteAll" class="btn btn-danger ml-3 mr-3">Delete all reports</a>
+
+        <div class="card-body messages-bubbles" style="overflow-y:scroll;" id="reportHub">
+            @if (Model.Count > 0)
+            {
+
+                @foreach (var item in Model)
+                {
+                    <div style="display:flex; flex-direction:column">
+                        @if (item.User.UserName == username)
+                        {
+                            <div class="message-bubble self-message">
+                                @item.Message <span class="self-time-stamp">@item.CreatedAt.ToShortTimeString()</span>
+
+                            </div>
+
+                        }
+                        else
+                        {
+
+                            <div class="message-bubble">@item.User.UserName : @item.Message <span class="time-stamp">@item.CreatedAt.ToShortTimeString()</span></div>
+                        }
+                    </div>
+                }
+            }
+            else
+            {
+                <h5>No messages.</h5>
+            }
+            <div id="messagesList" style="display:flex; flex-direction:column">
+            </div>
+        </div>
+        <div class="card-body">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="col-12"><input type="text" id="messageInput" /></div><br />
+            }
+            else
+            {
+                <div class="col-12"><input type="text" id="messageInput" disabled placeholder="Login first" /></div>
+            }
+            <p style="padding-right:10px; float:right;font-size:12px; color:lightgray">Press enter to send</p>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
+<script>
+
+    var element = document.getElementById("reportHub");
+    element.scrollTop = element.scrollHeight;
+</script>

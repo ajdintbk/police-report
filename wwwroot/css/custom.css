@@ -1,0 +1,89 @@
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: white !important; 
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    max-height: 100%;
+    background: url('../img/bg.jpg');
+    float: left;
+    width: 100%;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.message-hub{
+    background: rgba(255, 255, 255, 0.089);
+    padding: 10px;
+    width: 460px;
+    border-radius: 3em;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(40px);
+    height: 600px;
+    color: white;
+    overflow-y: scroll;
+}
+
+.message-bubble {
+    background-color: #3d5369;
+    border-radius: 15px;
+    color: rgb(255, 255, 255);
+    padding: 10px 15px 10px 15px;
+    width: max-content;
+    max-width:80%;
+    margin: 10px;
+    border: solid 2px transparent;
+    background-clip: padding-box;
+}
+
+.self-message {
+    background-color: #142a42;
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+.time-stamp {
+    color: #9eafc0;
+    opacity:0.5;
+}
+.self-time-stamp {
+    color: #4c6e96;
+    opacity: 0.5;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 0px;
+  }
+.messages-bubbles{
+    height: 95%;
+}
+
+#messageInput{
+    width: 100%;
+    border: 0px solid blue;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+input:focus{
+    outline: none;
+}
+input::placeholder{
+    color: rgba(0, 0, 0, 0.479);
+}
+
+.card-title-custom{
+    font-size: 6em;
+    font-weight: bold;
+}
+
+.bg-custom-dark{
+    color:white !important;
+}
